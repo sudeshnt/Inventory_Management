@@ -1,0 +1,19 @@
+<ion-view view-title="Goods Issue Note">
+    <ion-content>
+        <form ng-submit="GIN(item)">
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Item Id</span>
+                    <input type="number" ng-model="item.id">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Qty</span>
+                    <input type="number" ng-model="item.qty">
+                </label>
+                <button type="submit" class="button button-block button-positive">
+                    Submit GIN
+                </button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

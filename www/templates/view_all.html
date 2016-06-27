@@ -1,0 +1,49 @@
+<style>
+    .list .item.item-accordion {
+        line-height: 38px;
+        padding-top: 0;
+        padding-bottom: 0;
+        transition: 0.09s all linear;
+    }
+    .list .item.item-accordion.ng-hide {
+        line-height: 0px;
+    }
+    .list .item.item-accordion.ng-hide-add,
+    .list .item.item-accordion.ng-hide-remove {
+        display: block !important;
+    }
+    .button{
+        width:70px;
+        margin: 5px;
+    }
+
+</style>
+
+<ion-view view-title="All Items">
+    <ion-content>
+        <ion-list>
+            <div ng-repeat="item in allItems">
+                <ion-item class="item-stable"
+                          ng-click="toggleGroup(item)"
+                          ng-class="{active: isGroupShown(item)}">
+                    <i class="icon" ng-class="isGroupShown(item) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    {{item.itemName}}{{item.id}}
+                </ion-item>
+                <ion-item class="item-accordion" ng-show="isGroupShown(item)">
+                    <div style="padding: 10px; margin: 10px 0px 10px 0px;"><h2>item code : {{item.itemCode}}<br>
+                                         measure unit : {{item.mesureUnit}}<br>
+                                         units in hand : {{item.unitsInHand}}</h2></div>
+                    <div class="row" style="width: 100%">
+                        <button class="button button-positive" style="float: right" ng-click="update(item)">
+                            Edit
+                        </button>
+                        <button class="button button-assertive" ng-click="delete(item.id)">
+                            Delete
+                        </button>
+                    </div>
+                </ion-item>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

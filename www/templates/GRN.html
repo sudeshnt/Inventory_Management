@@ -1,0 +1,20 @@
+<ion-view view-title="Goods Receive Note">
+    <ion-content>
+        <form ng-submit="GRN(item)">
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Item Id</span>
+                    <input type="number" ng-model="item.id">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Qty</span>
+                    <input type="number" ng-model="item.qty">
+                </label>
+
+                <button type="submit" class="button button-block button-positive">
+                    Submit GRN
+                </button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
