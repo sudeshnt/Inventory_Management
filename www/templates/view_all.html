@@ -1,3 +1,42 @@
+
+
+<ion-view ng-init="doSomething()">
+    <ion-nav-buttons side="primary">
+        <button ng-if="expression">Click me</button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list>
+           <div style="margin-top: 43px;">
+            <div ng-repeat="item in allItems">
+                <ion-item class="item-stable"
+                          ng-click="toggleGroup(item)"
+                          ng-class="{active: isGroupShown(item)}">
+                    <i class="icon" ng-class="isGroupShown(item) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    {{item.itemName}}<p style="float:right; font-size:x-small;">id : {{item.id}}</p>
+                </ion-item>
+                <ion-item class="item-accordion" ng-show="isGroupShown(item)">
+                    <div style="padding: 10px; margin: 10px 0px 10px 0px;"><h2>item code : {{item.itemCode}}<br>
+                                         measure unit : {{item.mesureUnit}}<br>
+                                         units in hand : {{item.unitsInHand}}</h2></div>
+                    <div class="row" style="width: 100%">
+                        <button class="button button-outline button-positive" style="float: right" ng-click="update(item)">
+                            Edit
+                        </button>
+                        <button class="button button-outline button-assertive" ng-click="delete(item.id)">
+                            Delete
+                        </button>
+                    </div>
+                </ion-item>
+            </div>
+           </div>
+        </ion-list>
+        <button class="button button-assertive" ng-click="BackToMenu();" style="font-size: x-small;width: inherit;">
+            Back to Menu
+        </button>
+    </ion-content>
+</ion-view>
+
 <style>
     .list .item.item-accordion {
         line-height: 38px;
@@ -18,32 +57,3 @@
     }
 
 </style>
-
-<ion-view view-title="All Items">
-    <ion-content>
-        <ion-list>
-            <div ng-repeat="item in allItems">
-                <ion-item class="item-stable"
-                          ng-click="toggleGroup(item)"
-                          ng-class="{active: isGroupShown(item)}">
-                    <i class="icon" ng-class="isGroupShown(item) ? 'ion-minus' : 'ion-plus'"></i>
-                    &nbsp;
-                    {{item.itemName}}{{item.id}}
-                </ion-item>
-                <ion-item class="item-accordion" ng-show="isGroupShown(item)">
-                    <div style="padding: 10px; margin: 10px 0px 10px 0px;"><h2>item code : {{item.itemCode}}<br>
-                                         measure unit : {{item.mesureUnit}}<br>
-                                         units in hand : {{item.unitsInHand}}</h2></div>
-                    <div class="row" style="width: 100%">
-                        <button class="button button-positive" style="float: right" ng-click="update(item)">
-                            Edit
-                        </button>
-                        <button class="button button-assertive" ng-click="delete(item.id)">
-                            Delete
-                        </button>
-                    </div>
-                </ion-item>
-            </div>
-        </ion-list>
-    </ion-content>
-</ion-view>

@@ -53,13 +53,7 @@ angular.module('starter.controllers', [])
         });
   };
 
-  //for view all
-  $scope.allItems = [];
-  $http.get("http://52.221.245.58:8080/inventory_service/Item/getAllItems").then(function (response) {
-    response.data.forEach(function(item) {
-      $scope.allItems.push(item);
-    });
-  });
+
   /*
    * if given group is the selected group, deselect it
    * else, select the given group
@@ -126,8 +120,8 @@ angular.module('starter.controllers', [])
                   };
                   $scope.updateItem(data);
                   $window.location.reload();
-                //$location.path('/view');
-                $route.reload();
+                /*$location.path('/view');
+                $route.reload();*/
             }
           }
         ]
@@ -146,7 +140,7 @@ angular.module('starter.controllers', [])
                     response.data.unitsInHand+=item.qty;
                     console.log(response.data);
                     $scope.updateItem(response.data);
-                    $scope.showAlert();
+                    $scope.showAlert('Goods Receive Note?');
 
                 }
                 else
@@ -165,7 +159,7 @@ angular.module('starter.controllers', [])
                     response.data.unitsInHand-=item.qty;
                     console.log(response.data);
                     $scope.updateItem(response.data);
-                    $scope.showAlert();
+                    $scope.showAlert('Goods Issue Note?');
                 }
                 else
                     console.log('item not found');
@@ -198,10 +192,10 @@ angular.module('starter.controllers', [])
    };
 
     // An alert dialog
-    $scope.showAlert = function() {
+    $scope.showAlert = function(message) {
         var alertPopup = $ionicPopup.alert({
             /*title: 'Don\'t eat that!',*/
-            template: 'It might taste good'
+            template: 'Do you want to proceed '+message
         });
 
         alertPopup.then(function(res) {
@@ -209,6 +203,23 @@ angular.module('starter.controllers', [])
 
         });
     };
+
+  //back to menu
+    $scope.BackToMenu = function() {
+        /*$window.location.reload( "/menu" );*/
+        $location.path('/menu');
+    };
+  //all items
+    $scope.allItems = [];
+    $scope.doSomething = function(){
+        //for view all
+        $http.get("http://52.221.245.58:8080/inventory_service/Item/getAllItems").then(function (response) {
+            response.data.forEach(function(item) {
+                $scope.allItems.push(item);
+            });
+        });
+        console.log($scope.allItems);
+    }
 
   $scope.authenticateUser = function (user){
       if((user.username=="sudesh" && user.password=='sudesh') || (user.username=="darshana" && user.password=='darshana')){
